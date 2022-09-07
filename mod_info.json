@@ -2,7 +2,7 @@
 	"id":"PAGSM-dialogue",
 	"name":"Love and Prometheum",
 	"author":"Robepriority",
-	"version":"0.69",
-	"description":"Put above PAGSM to extend dialogue",
+	"version":"0.01 Proof of Concept",
+	"description":"Dialog Extender for PAGSM",
 	"gameVersion":"0.95.1a-RC6"
 }

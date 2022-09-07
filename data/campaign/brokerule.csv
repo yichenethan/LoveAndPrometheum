@@ -1,0 +1,133 @@
+id,trigger,conditions,script,text,options,notes
+"#RULESET_NAME love&prometheum",,,,,,
+convoKweenChatResponses,DialogOptionSelected,"$option == chatkween",,"""People keep asking me why I keep researching different ways to make bigger and better ships. I hear them whining, ""Why do we need one of these bigger ships when several of these smaller ships will do?"" Well, why shouldn't I work on making bigger and better ships? You think the Iapetus is the largest ship I've ever worked on? Ha, those fools have no idea...""
+OR
+""As much as all the lobster you can eat is delicious, I could really go for something else. You can only eat so many lobsters before you start getting… mildly sick of it. Of course, don't tell Balashi, or he might end up having a heart attack. Or maybe you should. Would at least shut him up for a day or two.""
+OR
+""Mind getting me something nice to research next time you explore the sector fringe? I hear there's some nice Domain era stuff just waiting to be scrounged up. Safety? Oh, you're concerned about your safety? You should be more like me and kick safety to the curb. Being safe didn't get us anywhere but nowhere.""
+OR
+""Hey, next time you see a bunch of Pathers flying around in those stupid looking ships they dare call a Prometheus, mind shoving a Reaper down their collective throats? Those Pathers wouldn't know good taste if it crawled down their necks.""
+OR
+""Oh, I've got some research I've been doing lately, and I could use someone to help me. Don't worry, I've only maimed only 25% of all the volunteers assisting me. Besides, it was their fault anyway for not being able to move fast enough.""
+OR
+“Talkative today, aren’t we? If you’re hoping for some company secrets, I’ll let you know this: we’re learning a lot about you.” Kween flashes a signature Sindrian Smile (TM) at you before turning her attention to something else. ""Perhaps this will break everything.""
+OR
+""A-"" Kween starts a yawn before interrupting herself. “Hold on, let me get something.” The comm feed flickers for a moment. “Ah, much better. Was there anything else you needed?”
+OR
+""...""The sound of TriPad transitions fill the room as Kween works silently.""...""
+OR
+“Budget concerns? That’s so sweet of you to ask.” Kween continues before you can respond. “Of course, I won’t begrudge the Company’s generosity, but if you share my expanded vison, I’m always welcome to..."" Kween’s stare seems strong enough to drill through a Prometheus. "" private contributions.” 
+OR
+“What I do to relax? Captain, I thought you to be more diligent than that! Are the results of your work not enough? If your spacefaring lacks purpose, you can always assist my research.""",,
+,,,,,,
+# sfc events,,,,,,
+,,,,,,
+# sfcruniapocalypse,,,,,,
+sfcruniapocalypseend,sfcruniapocalypseclimax,">>You've satbombed Sindria with Yunifer and the Laputeus
+PlayerFleetHasShipWithBaseHull sfcsuperiapetus
+",,"The dull red of the Askonian sun is now complimented by wonderfully bright lights on the surface of Sindria.If you strain your ears, you might even hear cheering from below.
+
+Yunifer's face is illuminated by these lights, enough to see tears falling down her face. You rush over, nearly tripping over yourself. The sound of your crew shouting orders and blaring alarms flood in. Yunifer turns towards you...
+
+
+
+Her smile is brighter than any of the lights on the world.
+
+For once, neither of you pay attention to the sounds on the Laputeus. You dance together to the sound of exploding antimatter fuel.",,
+sfcruniapocalypseclimax,,,,,,
+"#END sfcruniapocalypse",,,,,,
+"#END sfc events",,,,,,
+,,,,,,
+# kweendirectory,,,,,,
+kweeniapetus,DialogOptionSelected,"$option == kweenOptioniapetus","FireAll PopulateKweenIapetusOptions","$personLastName's eyes seem to gleam with an eerie glow as that smile on her face twists into a wicked grin.
+
+""Why yes indeed, there is quite the masterpiece that I have had quite the pleasure of working on. Yet it seems that despite all my hard work, it has gone to waste.""
+
+Kween glances away for a moment. ""Tell me, are you familiar with the Iapetus IS-15000? Such a powerful battleship, the pride of the fleet! But what if I told you there is more to it than just that. ... Ah, perhaps before we continue, we should meet in person. There is something I want to show you, especially since you've been such a helpful assistant. And don't you worry, I'll have a shuttle come and take you directly to the facility. All you have to do is accept.""",,
+,,,,,,
+# sfckweentalktree,,,,,,
+kweentalkcompliment,PopulateKweenTalkOptions,"$id == sfckween score:1000",,,"kweentalkcompliment:... a compliment.",
+kweentalkinsult,PopulateKweenTalkOptions,"$id == sfckween score:1000",,,"kweentalkinsult:... an insult.",
+,,,,,,
+kweentalkcomplimentres,DialogOptionSelected,"$option == kweentalkcompliment","$sfckweentalk = true 14
+AdjustRepActivePerson WELCOMING 1
+FireAll PopulateKweenOptions","""Ah yes, praise me. It's what I deserve.""
+OR
+""I see you recognize my genius for what it is. Good.""
+OR
+""You think flattery will get you far? Well guess what, it just might.""
+OR
+""A smart one, huh? Recognizing your betters is always important to do.""
+OR
+""Science stops for no one, but it will take a moment to accept your words.""
+OR
+""Although I usually don't like people stating the obvious, I'll make an exception for this.""",,
+kweentalkinsultres,DialogOptionSelected,"$option == kweentalkinsult","$sfckweentalk = true 14
+AdjustRepActivePerson SUSPICIOUS -2
+FireAll PopulateKweenOptions","""I wonder, will anyone miss you if you were to suddenly disappear?""
+OR
+""Such a puny mind you must have. So quick to judge.""
+OR
+""I won't waste my time with such drivel.""
+OR
+""A simpleton, huh? And here I thought I've seen enough of those with Balashi.""
+OR
+""You're just envious, aren't you.'",,
+"#END sfckweentalktree",,,,,,
+,,,,,,
+# sfckweenpeopletree,,,,,,
+kweenpeopleme,PopulateKweenPeopleOptions,"$id == sfckween score:1000",,,"kweenpeopleplayer:""... Me.""",
+"#END sfckweenpeopletree",,,,,,
+,,,,,,
+# sfckweengifttree,,,,,,
+kweengiftprisoner,PopulateKweenGiftOptions,"$id == sfckween score:1000
+PlayerHasCargo prisoner",,,"kweengiftprisoner:"" a... test subject?""",
+,,,,,,
+kweengiftprisonerrep,DialogOptionSelected,"$option == kweengiftprisoner","$sfckweengifted = true 14
+AdjustRepActivePerson COOPERATIVE 1
+AddRemoveCommodity prisoner -1 true
+FireAll PopulateKweenOptions","$personLastName let's out a chuckle. ""Ah, you've noticed a clear lack of volunteers. Of course, I can deal with the... identification issues.""
+OR
+""Ah, someone with a wide range of skills . Compliance? $personLastName almost scoffs. ""Please, don't doubt my abilities.",,
+"#END sfckweengifttree",,,,,,
+"#END kweendirectory",,,,,,
+,,,,,,
+# runi,,,,,,
+convDefaultGreetingrunifirst,PickGreeting,"!$sfcrunifirstgreeting
+$global.kweenallowed
+$id == sfcruni score:1000","$sfcrunifirstgreeting = true
+ShowPersonVisual
+FireAll PopulateOptions","You wait for a few seconds as the commlink connects to Yunifer. As soon as she appears on the screen, she gives you a look of surprise.
+
+""C-Captain!"" She stutters as her eyes struggle to look at you. ""I-I-I H-how did you get this contact? D-did Kween give you it? I-I-""
+
+Yunifer takes a deep breath as she does her best to compose herself.",,
+convDefaultGreetingruni,PickGreeting,"$sfcrunifirstgreeting
+$id == sfcruni score:100","ShowPersonVisual
+FireAll PopulateOptions","""H-hello again, C-captain.""
+OR
+""Y-yes, Captain?""
+OR
+""H-hello there, C-captain.""",,"# this will fire when talking to same person again without leaving the station, but that seems fine"
+,,,,,,
+convoruniStart,PopulateOptions,"$id == sfcruni score:1000",,,"conversesfcruni:Converse",
+convoruniList,DialogOptionSelected,"$option == conversesfcruni","FireAll PopulateRuniOptions",,,
+convoruniChat,PopulateRuniOptions,"$id == sfcruni score:1000",,,"chatsfcruni:Chat",
+convoruniChatResponses,DialogOptionSelected,"$option == chatsfcruni",,"""It's been so l-long since I've been a-able to command a ship. I wish I could d-do so again...""
+OR
+""I w-wish the Company would let m-me command a s-ship again...""
+OR
+""How is the Iapetus doing? Are you t-treating her okay?""",,
+,,,,,,
+convorunioptionescape,PopulateRuyOptions,"$id == sfcruni score:1000","SetShortcut sfcruniOptionMenu ""ESCAPE""",,"sfcruniOptionMenu:Return",
+runimenu,DialogOptionSelected,"$option == sfcruyOptionMenu","FireAll PopulateOptions",,,
+,,,,,,
+# runichat,,,,,,
+runipeopleme,PopulateRuniPeopleOptions,"$id == sfcruni score:1000",,,"runipeopleplayer:""... Me.""",
+runipeopleresponsplayerveryhigh,DialogOptionSelected,"$option == runipeopleplayer
+sfcreltrack 99 100",,"Runi takes a deep breath. ""I love you just as much as I do the lapeutus.""
+",,
+runipeoplelist,PopulateRuniOptions,,,,,
+"#END runichat",,,,,,
+"#END runi",,,,,,
+
